@@ -1,5 +1,12 @@
-install docker
+Docker is a platform and tool for building, distributing, 
+and running Docker containers
 
+Docker container is an open source software development platform. 
+Its main benefit is to package applications in “containers,” 
+allowing them to be portable among any system running
+the Linux operating system 
+
+install docker
 wget -qO- https://get.docker.com/ | sh
 curl -fsSL get.docker.com -o get-docker.sh
 sh get-docker.sh
@@ -13,24 +20,23 @@ apt-cache policy docker-ce
 service docker start
 enable docker
 
-docker images
-docker search Hello eorld   (Search docker images)
-docker pull hello-world
+docker images  (why did show docker images command)
+docker search Hello world   (Search docker images)
+docker pull hello-world     (how to doenload docker image)
 docker images
 
 docker search ubuntu
 docker pull ubuntu
 docker images
-docker run -itd -p 80:80 ubuntu
+docker run -itd -p 80:80 ubuntu   
 
-docker run -itd ubuntu
+docker run -itd ubuntu   (create docker containear)
 apt-get install git
-got --version
+git --version
 apt-get install ansible
 ansible --version
 cd /etc/ansiblels
 vi host
- 
  2)
 docker images
 systemctl enable docker
@@ -45,24 +51,125 @@ docker exec -it cid /bin/bash   (Create server bater opection)
 exit   (Stop containear)
 ctrl pq  (Don't stop containear running)
 docker ps
-
+how to check docker logs
+-------------------------
+docker log cid
 
 docker 
+-----------
 docker hub  (public/private)
 docker store (comunity)
 docker registor
 
-Create containear
-
-docker ps
-docker run -it centos
+Create container
+-------------------
+docker ps    (how to check container)
+docker run -it centos  (Create container)
 apt-get install git
 mkdir maven tomcat jdk
 
+docker login
 containear to create images
 docker commit cid
-docker tag imid centosnew
+docker images (create image)
+docker tag imageid centosnew
+docker images
 docker run -it centosnew
+docker tag imageid username/centos
+docker push username/centosnew
 
+docker ps-a (All docker images)
+docker start cid
+docker stop cid
+
+How to image delete
+---------------------
+docker rmi imageid
+docker rmi -f cid
+
+How to chenge container name
+---------------------------------
+docker rename privecename Newname
+
+
+How to host to container data store (share mount volume)
+-------------------------------------------
+docker run -it --name server1 -v/opt/mvn:/opt cid
+
+how to check container data in direcry locaction (shared volume)
+-----------------------------------------------------------------
+docker inspect 
+
+docker stats 
+
+container limit allocate
+-------------------------
+docker run -itd -m 300M ubuntu
+
+docker stats (container check limit size )
+
+container data to another container data 
+-----------------------------------------
+
+docker run -it --volumes-from cid newcontainer name
+
+how to check docker container logs check
+-----------------------------------------
+ docker logs cid
+ 
+ 
+ docker files
+ -------------
+ vi dockerfile
+ 
+ FROM ubuntu:latest
+ RUN apt-get update -y
+ RUN apt-get install wget
+ 
+ 
+ docker build -t "ubuntu-test" .  (RUN the docker file system)
+ 
+ Docker Network
+ -----------------
+ docker network ls
+ ifconfig
+ docker network inspect id
+ 
+ how to create own network
+ ----------------------------
+ docker network create --subnet 10.0.0.0/24 --gateway 10.1.0.1 bredge
+ docker network ls
+ docker network inspect id
+ docker network rm bridge
+ 
+ 
+ 
+ 
+
+ 
+ https://www.amazon.in/Citizen-Analog-Gold-Dial-Watch-AG8353-81P/dp/B01N4H7VDF/ref=lp_4371854031_1_14?s=watches&ie=UTF8&qid=1552458342&sr=1-14
+ 
+ 
+ FROM ubuntu:latest
+ RUN apt-get update -y
+ RUN apt-get install wget -y
+RUN apt-get install git -y
+ RUN apt-get install sudo -y
+RUN apt-get update -y
+ RUN cd /opt && wget wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz && tar -xvf jdk-8u201-linux-x64.tar.gz
+ RUN cd /opt && wget http://mirrors.estointernet.in/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz && tar -xvf apache-maven-3.6.0-bin.tar.gz
+ RUN cd /opt && wget http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.38/bin/apache-tomcat-8.5.38.tar.gz && tar -xvf apache-tomcat-8.5.38.tar.gz
+ RUN wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add - && sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list' && sudo apt-get update && sudo apt-get install jenkins
+RUN apt-get updete
+
+ docker pull worldpress
+ docker run -itd -name wp1 -p 89:80 worldpress
+ go to browser
+ docker pull mysql
+ docker run -itd --name mydb -e MySQL_ROOT_PASSWORD=venkat@123
+Two containers link command
+------------------------------
+ docker run -itd wp2 --link mydb:mysql -p 87:80 worldpress 
+                worldpress  dbname
 
 		
